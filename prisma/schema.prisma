@@ -8,21 +8,18 @@ datasource db {
 }
 
 model categories {
-  id       Int       @id(map: "categories_pk") @default(autoincrement())
-  name     String    @unique @db.VarChar(255)
-  imageUrl String    @unique
-  product  product[]
+  id       Int    @id(map: "categories_pk") @default(autoincrement())
+  name     String @unique @db.VarChar(255)
+  imageUrl String @unique
 }
 
 model product {
-  id           Int        @id(map: "product_pk") @default(autoincrement())
-  name         String     @db.VarChar(255)
-  description  String?    @db.VarChar(500)
+  id           Int     @id(map: "product_pk") @default(autoincrement())
+  name         String  @db.VarChar(255)
+  imageUrl     String
+  description  String? @db.VarChar(500)
   price        Int
-  sizeId       Int?
   categoriesId Int
-  size         size?      @relation(fields: [sizeId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_fk0")
-  categories   categories @relation(fields: [categoriesId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_fk1")
 }
 
 model requests {
@@ -32,10 +29,4 @@ model requests {
   status      String @db.VarChar(255)
   tableNumber Int
   amount      Int
-}
-
-model size {
-  id      Int       @id(map: "size_pk") @default(autoincrement())
-  name    String    @db.VarChar
-  product product[]
 }

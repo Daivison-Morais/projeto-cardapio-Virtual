@@ -5,7 +5,6 @@ import { getCategories } from "@/controllers";
 const categoriesRouter = Router();
 
 categoriesRouter
-  //.all("/*", authenticateToken)
   .get("", getCategories)
 
 export { categoriesRouter };
