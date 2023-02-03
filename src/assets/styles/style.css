@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bad+Script&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Merriweather&display=swap');
 
 * {
   box-sizing: border-box;
@@ -8,6 +10,5 @@
 
 body {
   font-family: "Lexend Deca", sans-serif;
-  background-color: rgb(229, 224, 189);
   margin: 50px 0;
 }
