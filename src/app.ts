@@ -9,6 +9,7 @@ import {
   categoriesRouter,
   productsRouter
 } from "@/routers";
+import { requestsRouter } from "./routers/requestsRouter";
 
 const app = express();
 app
@@ -17,6 +18,7 @@ app
   .get("/health", (_req, res) => res.send("OK!"))
   .use("/categories", categoriesRouter)
   .use("/products", productsRouter)
+  .use("/requests", requestsRouter)
 
 export function init(): Promise<Express> {
   connectDb();

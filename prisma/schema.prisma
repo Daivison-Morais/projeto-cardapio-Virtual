@@ -23,10 +23,11 @@ model product {
 }
 
 model requests {
-  id          Int    @id(map: "requests_pk") @default(autoincrement())
-  name        String @db.VarChar(255)
-  description String @db.VarChar(255)
-  status      String @db.VarChar(255)
-  tableNumber Int
-  amount      Int
+  id           Int       @id(map: "requests_pk") @default(autoincrement())
+  listRequests String
+  description  String?   @db.VarChar(700)
+  status       String    @db.VarChar(255)
+  tableNumber  Int
+  totalPrice   Int
+  createdAt    DateTime? @default(now()) @db.Timestamptz(6)
 }
