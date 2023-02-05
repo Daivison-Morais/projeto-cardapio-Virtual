@@ -8,7 +8,12 @@ async function postRequests (lstRequests: any){
     })
 }
 
+export async function getRequests (){
+    return prisma.requests.findMany()
+}
+
 const requestsRepository = {
-    postRequests
+    postRequests,
+    getRequests
 }
 export default requestsRepository
