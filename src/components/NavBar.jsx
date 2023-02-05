@@ -39,10 +39,15 @@ export default function NavBar (){
 } 
 
 const Navbar = styled.div`
+position: fixed;
+bottom: 50px;
+left: 0;
 display: flex;
 width: 100vw;
 height: 60px;
 overflow-y: scroll;
+background-color: white;
+
 `;
 
 const ImgFood = styled.img`

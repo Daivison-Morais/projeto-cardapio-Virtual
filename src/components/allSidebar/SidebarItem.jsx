@@ -9,7 +9,7 @@ export function SidebarItem({ Icon, Text }) {
   );
 }
 
-const Container = styled.div`
+export const Container = styled.div`
 font-family: 'Merriweather', serif;
   display: flex;
   align-items: center;

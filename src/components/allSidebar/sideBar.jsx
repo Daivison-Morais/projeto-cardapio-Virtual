@@ -1,12 +1,17 @@
 import styled from "styled-components";
 import { SidebarItem } from "./SidebarItem";
 import { FaUserAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export function Sidebar({ active }) {
+  const navigate = useNavigate();
   return (
     <Container sidebar={active}>
-      <Content>
-        <SidebarItem Icon={FaUserAlt} Text={"Entrar como Administrador"} />
+      <Content onClick={()=>{
+        navigate("/administrator");
+        
+    }}>
+        <SidebarItem  Icon={FaUserAlt} Text={"Entrar como Administrador"} />
       </Content>
     </Container>
   );

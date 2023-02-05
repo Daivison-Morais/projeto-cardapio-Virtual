@@ -1,13 +1,42 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { BsCheck2Square } from "react-icons/bs";
 
-export default function CardProduct({name, imageUrl, description, price}) {
+export default function CardProduct({
+  name,
+  imageUrl,
+  description,
+  price,
+  lstProducts,
+  setLstProducts,
+  categoryId,
+  refresh,
+  setRefresh,
+}) {
 
-    const [selected, setSelected] = useState(false);
+  function Selection() {
+    const product = {
+      categoryId: categoryId,
+      name: name,
+      price: price / 100,
+    };
+    
 
-    function Selection() {
-        
+    if (!lstProducts.find(value => (value.name.includes(name)))) {
+      lstProducts.push(product);
+      setLstProducts(lstProducts);
+      setRefresh(!refresh);
+      return;
     }
+
+
+    for(let i =0; i < lstProducts.length; i++){
+      if(lstProducts[i].name === name){
+        lstProducts.splice(i, 1);
+        setLstProducts(lstProducts);
+        setRefresh(!refresh);
+      }
+    }
+  }
 
   return (
     <CardProduto onClick={Selection}>
@@ -15,9 +44,32 @@ export default function CardProduct({name, imageUrl, description, price}) {
       <NameProduct>{name}</NameProduct>
       <Descripition>{description}</Descripition>
       <Price>{price / 100} R$</Price>
+      {lstProducts.map((value) => {
+        return value.name === name ? (
+          <SelectedSvg onList={true}>
+            <BsCheck2Square />
+          </SelectedSvg>
+        ) : (
+          <SelectedSvg onList={false}>
+            <BsCheck2Square />
+          </SelectedSvg>
+        );
+      })}
     </CardProduto>
   );
 }
+
+const SelectedSvg = styled.div`
+  font-weight: 700;
+  margin-top: 2px;
+  opacity: ${({ onList }) => (onList ? "1" : "0")};
+  > svg {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 15px;
+  }
+`;
 
 const Price = styled.div`
   font-weight: 700;
@@ -26,7 +78,7 @@ const Price = styled.div`
 const Descripition = styled.div`
   display: flex;
   font-size: 9px;
-  
+
   text-align: center;
   max-height: 50px;
 `;
@@ -41,7 +93,8 @@ const ImgProduc = styled.img`
 `;
 
 const CardProduto = styled.div`
- font-family: 'Merriweather', serif;
+  position: relative;
+  font-family: "Merriweather", serif;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -54,8 +107,9 @@ const CardProduto = styled.div`
   min-width: 120px;
   margin: 5px;
   padding: 4px;
-  border: 0.5px #DADCE0 solid;
+  border: 0.5px #dadce0 solid;
   border-radius: 10px;
   box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);
   background-color: white;
+  cursor: pointer;
 `;

@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getCategories } from "../services/menuApi";
 import CardCategory from "../components/CardCategory";
+import HorizontalBar from "../components/HorizontalBar";
 
 export default function Menu() {
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);  
 
   useEffect(() => {
     getCategories()
@@ -29,10 +30,14 @@ export default function Menu() {
                   name={name}
                   categoryId={id}
                   key={id}
+                  
                 />
               );
             })}
       </Main>
+      <HorizontalBar>
+
+    </HorizontalBar>
     </>
   );
 }
