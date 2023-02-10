@@ -31,3 +31,13 @@ model requests {
   totalPrice   Int
   createdAt    DateTime? @default(now()) @db.Timestamptz(6)
 }
+
+model historic {
+  id           Int      @id(map: "historic_pk") @default(autoincrement())
+  listRequests String
+  description  String?  @db.VarChar(700)
+  status       String   @db.VarChar(255)
+  tableNumber  Int
+  createdAt    DateTime @default(dbgenerated("'2023-02-06 12:08:56.739878-03'::timestamp with time zone")) @db.Timestamptz(6)
+  totalPrice   Int
+}
