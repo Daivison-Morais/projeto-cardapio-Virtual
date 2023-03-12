@@ -1,16 +1,11 @@
 import { useEffect, useState } from "react";
-import {
-  deleteRequests,
-  getRequests,
-  putRequests,
-} from "../services/requestsApi";
+import { getRequests } from "../services/requestsApi";
+import HorizontalBar from "../components/HorizontalBar";
+import CardLstRequests from "../components/CardLstRequest";
 import styled from "styled-components";
-import { Main } from "./Administrator";
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
-  const [clickedBt1, setClickedBt1] = useState(false);
-  const [clickedBt2, setClickedBt2] = useState(false);
   const [refresh, setRefresh] = useState([]);
 
   useEffect(() => {
@@ -20,109 +15,61 @@ export default function Requests() {
       })
       .catch((error) => {
         console.log(error);
-        alert("malformed request");
+        alert("Erro de conexão");
       });
   }, [refresh]);
 
-  console.log(requests);
+  setInterval(() => {
+    setRefresh(!refresh);
+  }, 10 * 1000);
 
-  function updateRequest(idRequest) {
-    putRequests(idRequest)
-      .then((response) => {
-        setClickedBt1(!clickedBt1);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("malformed request");
-      });
-  }
-
-  function deleteRequest(status, idRequest) {
-    deleteRequests(status, idRequest)
-      .then((response) => {
-        setClickedBt2(clickedBt2);
-      })
-      .catch((error) => {
-        console.log(error);
-        alert("malformed request");
-      });
+  if (requests.length > 0) {
+    requests.sort((a, b) => {
+      if (a.id < b.id) {
+        return -1;
+      } else {
+        return true;
+      }
+    });
   }
 
   return (
     <>
-      <Main>
-        {requests.map((value) => (
-          <>
-            <CardRequests>
-              <Title>Mesa {value.tableNumber}</Title>
-              <ListRequests>
-                {value.listRequests.split(", ").map((value) => (
-                  <div>{value}</div>
-                ))}
-              </ListRequests>
-              <ContainerBtn>
-                <Button
-                  onClick={() => {
-                    updateRequest(value.id);
-                  }}
-                >
-                  Preparando
-                </Button>
-                <Button
-                  onClick={() => {
-                    deleteRequest("finished");
-                  }}
-                >
-                  Finalizado
-                </Button>
-              </ContainerBtn>
-            </CardRequests>
-          </>
-        ))}
-      </Main>
+      {requests.length > 0 ? (
+        <Main>
+          {requests?.map((value) =>
+            value.status === "finished" ? (
+              ""
+            ) : (
+              <CardLstRequests
+                value={value}
+                setRefresh={setRefresh}
+                refresh={refresh}
+              />
+            )
+          )}
+        </Main>
+      ) : (
+        <Center>Sem pedidos por enquanto :)</Center>
+      )}
+      <HorizontalBar></HorizontalBar>
     </>
   );
 }
 
-const ListRequests = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 95%;
-
-  div {
-  }
-`;
-
-const Button = styled.div`
+export const Center = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 25vw;
-  height: 10vw;
-  margin: 10px 15px;
-  border-radius: 8px;
-  background-color: #161726;
-  color: white;
-  border: 1px white solid;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #ddd6ed;
+  color: black;
 `;
 
-const Title = styled.div``;
-
-const ContainerBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const CardRequests = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: 20px 0;
-  width: 90vw;
-  padding: 7px;
-  border-radius: 8px;
-  color: white;
-  background-color: #474b6c;
+const Main = styled.div`
+  width: 100%;
+  min-height: 100vh;
+  padding: 55px 20px;
+  background-color: #ddd6ed;
 `;

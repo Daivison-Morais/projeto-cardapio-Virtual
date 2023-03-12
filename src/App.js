@@ -6,11 +6,26 @@ import Administrator from "./pages/Administrator";
 import Requests from "./pages/Requests";
 import Historic from "./pages/Historic";
 import TopBar from "./components/TopBar";
+import Waiting from "./pages/waiting";
+import { useState } from "react";
+import UserContext from "./components/UserContext";
 
 export default function App() {
+
+  const [token, setToken] = useState("");
+  const [restaurantId, setRestaurantId] = useState(0);
+
   return (
     <>
       <Router>
+      <UserContext.Provider
+          value={{
+            token,
+            setToken,
+            restaurantId,
+            setRestaurantId
+          }}
+        >
         <TopBar/>
         <Routes>
           <Route path="/" element={<Menu/>}/>
@@ -19,7 +34,9 @@ export default function App() {
           <Route path="/administrator" element={<Administrator/>}/>
           <Route path="/requests" element={<Requests/>}/>
           <Route path="/historic" element={<Historic/>}/>
+          <Route path="/wainting" element={<Waiting/>}/>
         </Routes>
+        </UserContext.Provider>
       </Router>
     </>
   );

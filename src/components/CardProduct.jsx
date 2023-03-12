@@ -12,25 +12,22 @@ export default function CardProduct({
   refresh,
   setRefresh,
 }) {
-
   function Selection() {
     const product = {
       categoryId: categoryId,
       name: name,
       price: price / 100,
     };
-    
 
-    if (!lstProducts.find(value => (value.name.includes(name)))) {
+    if (!lstProducts.find((value) => value.name.includes(name))) {
       lstProducts.push(product);
       setLstProducts(lstProducts);
       setRefresh(!refresh);
       return;
     }
 
-
-    for(let i =0; i < lstProducts.length; i++){
-      if(lstProducts[i].name === name){
+    for (let i = 0; i < lstProducts.length; i++) {
+      if (lstProducts[i].name === name) {
         lstProducts.splice(i, 1);
         setLstProducts(lstProducts);
         setRefresh(!refresh);
@@ -60,16 +57,20 @@ export default function CardProduct({
 }
 
 const SelectedSvg = styled.div`
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
   font-weight: 700;
   margin-top: 2px;
   opacity: ${({ onList }) => (onList ? "1" : "0")};
   > svg {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
-    font-size: 15px;
+    font-size: 17px;
   }
 `;
+
+
+
 
 const Price = styled.div`
   font-weight: 700;

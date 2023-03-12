@@ -3,42 +3,51 @@ import styled from "styled-components";
 import { Button } from "./Products";
 import HorizontalBar from "../components/HorizontalBar";
 import { postRequest } from "../services/confirmationApi";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import UserContext from "../components/UserContext";
 
 export default function Confirmation() {
-
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
-  const productsSelects = location.state.productsSelects;
-  const [description, setDescription] = useState('');
-  const tableNumber = localStorage.tableNumber || 0;  
+  const { restaurantId } = useContext(UserContext);
+
+  const { productsSelects } = location.state;
+  const [description, setDescription] = useState("");
+
+  const tableNumber = localStorage.tableNumber || 0;
   let totalPrice = 0;
   let listRequests = "";
 
-  productsSelects.forEach(({price, name})=>{
-      totalPrice += price;
-      listRequests += name + ", ";
-  })
-  console.log(totalPrice);
-  console.log(listRequests);
-  function DoRequest (){
+  productsSelects.forEach(({ price, name }) => {
+    totalPrice += price;
+    listRequests += name + ", ";
+  });
 
-    const body ={
-        listRequests: listRequests,
-        description: description,
-        tableNumber: tableNumber,
-        status: "waiting",
-        totalPrice: totalPrice
-      }
+  const body = {
+    restaurantId: restaurantId,
+    listRequests: listRequests,
+    description: description,
+    tableNumber: tableNumber,
+    status: "waiting",
+    totalPrice: totalPrice * 100,
+  };
+
+  function DoRequest() {
+    console.log(body)
 
     postRequest(body)
-    .then(()=>{
-        navigate("/")
-    })
-    .catch(error => {
-        console.log(error)
-    })
-  }
+      .then((response) => {
+        navigate("/wainting", {
+          state: {
+            request: response,
+          },
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    }
+
 
   return (
     <>
@@ -49,6 +58,15 @@ export default function Confirmation() {
         ))}
 
         <Price>Preço Total: {totalPrice} R$</Price>
+        <Form>
+          <Input
+          placeholder="Adicionar descrição"
+          type="text"
+          value={description}
+          onChange={event => setDescription(event.target.value)}
+          >
+          </Input>
+        </Form>
       </Main>
       <HorizontalBar>
         <Button onClick={DoRequest}>Fazer Pedido </Button>
@@ -56,19 +74,34 @@ export default function Confirmation() {
     </>
   );
 }
+const Input = styled.input`
+  width: 100%;
+  height: 35px;
+  margin-bottom: 13px;
+  font-size: 18px;
+  color: #262626;
+  padding-left: 8px;
+  border-radius: 5px;
+`;
+
+const Form = styled.form`
+  font-size: 20px;
+  margin-bottom: 25px;
+  border-radius: 5px;
+`;
 
 const Price = styled.div`
-font-size: 20px;
-margin:25px;
+  font-size: 20px;
+  margin: 25px;
 `;
 
 const Title = styled.div`
-font-size: 20px;
-    margin-bottom: 25px;
+  font-size: 20px;
+  margin-bottom: 25px;
 `;
 
 const EachProduct = styled.div`
-font-size: 15px;
+  font-size: 15px;
   text-align: center;
   margin: 8px 5px;
 `;
@@ -79,9 +112,9 @@ export const Main = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   padding: 20px;
   width: 100vw;
-  height: calc(100vh - 100px);
-  background-color: #161726;
+  min-height: 100vh;
+  background-color: #ddd6ed;
 `;

@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
-export function SidebarItem({ Icon, Text }) {
+export function SidebarItem({ Icon, Text, setState, state }) {
   return (
-    <Container>
+    <Container onClick={() => {setState(!state)
+    }} >
       <Icon />
       {Text}
     </Container>
@@ -10,10 +11,10 @@ export function SidebarItem({ Icon, Text }) {
 }
 
 export const Container = styled.div`
-font-family: 'Merriweather', serif;
+  font-family: "Merriweather", serif;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: start;
   text-align: center;
   line-height: 12px;
   color: white;

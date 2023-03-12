@@ -15,7 +15,7 @@ export default function TopBar() {
   return (
     <>
       <Top>
-        <Img src={topo} alt="top"></Img>
+        <Img src={topo}></Img>
         <Option onClick={showSidebar}>
           {sidebar ? (
             <FaTimes style={{ color: "white" }}></FaTimes>

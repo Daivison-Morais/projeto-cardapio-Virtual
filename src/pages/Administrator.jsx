@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import HorizontalBar from "../components/HorizontalBar";
 
 
 export default function Administrator() {
@@ -9,27 +10,30 @@ export default function Administrator() {
       <Main>
         <Options onClick={()=>{navigate("/requests")}}>Predidos</Options>
         <Options onClick={()=>{navigate("/historic")}}>Histórico de Pedidos</Options>
+        <Options onClick={()=>{navigate("/historic")}}>Gerar QrCode</Options>
       </Main>
+      <HorizontalBar>
+      </HorizontalBar>
     </>
   );
 }
 
 export const Main = styled.div`
   color: white;
-  padding: 5px 20px;
   width: 100vw;
-  height: calc(100vh - 100px);
-  background-color: #161726;
+  min-height: 100vh;
+  padding: 50px 15px;
+  background-color: #ddd6ed;
 `;
 
 export const Options = styled.div`
-
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 20px 0;
-  width: 90vw;
+  width: 100%;
   height: 40px;
   border-radius: 8px;
+  cursor: pointer;
   background-color: #474b6c;
 `;
