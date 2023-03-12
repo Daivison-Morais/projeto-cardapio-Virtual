@@ -1,3 +1,7 @@
+# Cardápio Virtual
+
+Backend, conectado ao front: https://github.com/Daivison-Morais/cardapiovirtual-front
+
 # Para rodar o projeto
 
 Clone o repositório.
