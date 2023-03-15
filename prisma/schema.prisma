@@ -8,36 +8,63 @@ datasource db {
 }
 
 model categories {
-  id       Int    @id(map: "categories_pk") @default(autoincrement())
-  name     String @unique @db.VarChar(255)
-  imageUrl String @unique
-}
-
-model product {
-  id           Int     @id(map: "product_pk") @default(autoincrement())
-  name         String  @db.VarChar(255)
-  imageUrl     String
-  description  String? @db.VarChar(500)
-  price        Int
-  categoriesId Int
-}
-
-model requests {
-  id           Int       @id(map: "requests_pk") @default(autoincrement())
-  listRequests String
-  description  String?   @db.VarChar(700)
-  status       String    @db.VarChar(255)
-  tableNumber  Int
-  totalPrice   Int
-  createdAt    DateTime? @default(now()) @db.Timestamptz(6)
+  id           Int         @id(map: "categories_pk") @default(autoincrement())
+  name         String      @unique @db.VarChar(255)
+  imageUrl     String      @unique
+  restaurantId Int
+  restaurants  restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "categories_fk0")
+  product      product[]
 }
 
 model historic {
-  id           Int      @id(map: "historic_pk") @default(autoincrement())
+  id           Int         @id(map: "historic_pk") @default(autoincrement())
   listRequests String
-  description  String?  @db.VarChar(700)
-  status       String   @db.VarChar(255)
+  description  String?     @db.VarChar(700)
+  status       String      @db.VarChar(255)
   tableNumber  Int
-  createdAt    DateTime @default(dbgenerated("'2023-02-06 12:08:56.739878-03'::timestamp with time zone")) @db.Timestamptz(6)
+  createdAt    DateTime    @default(dbgenerated("'2023-03-03 16:59:27.700778-03'::timestamp with time zone")) @db.Timestamptz(6)
   totalPrice   Int
+  restaurantId Int
+  restaurants  restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "historic_fk0")
+}
+
+model product {
+  id           Int        @id(map: "product_pk") @default(autoincrement())
+  name         String     @unique @db.VarChar(255)
+  imgUrl       String
+  descricao    String?    @db.VarChar(500)
+  price        Int
+  categoriesId Int
+  categories   categories @relation(fields: [categoriesId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "product_fk1")
+}
+
+model requests {
+  id           Int         @id(map: "requests_pk") @default(autoincrement())
+  listRequests String
+  description  String?     @db.VarChar(700)
+  status       String      @db.VarChar(255)
+  tableNumber  Int
+  createdAt    DateTime    @default(dbgenerated("'2023-03-03 16:59:27.700778-03'::timestamp with time zone")) @db.Timestamptz(6)
+  totalPrice   Int
+  restaurantId Int
+  restaurants  restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "requests_fk0")
+}
+
+model restaurants {
+  id         Int          @id(map: "restaurants_pk") @default(autoincrement())
+  name       String       @db.VarChar(255)
+  password   String       @db.VarChar(255)
+  categories categories[]
+  historic   historic[]
+  requests   requests[]
+  sessions   sessions[]
+}
+
+model sessions {
+  id           Int         @id(map: "sessions_pk") @default(autoincrement())
+  restaurantId Int
+  token        String      @db.VarChar(500)
+  active       Boolean     @default(true)
+  createdAt    DateTime    @default(dbgenerated("'2023-03-04 11:36:00.177382-03'::timestamp with time zone")) @db.Timestamptz(6)
+  restaurants  restaurants @relation(fields: [restaurantId], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "sessions_fk0")
 }

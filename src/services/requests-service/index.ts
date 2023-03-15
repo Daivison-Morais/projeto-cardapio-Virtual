@@ -7,11 +7,12 @@ async function postRequests (lstRequests:any) {
 }
 
 async function getRequests () {
+  
   const requests = await requestsRepository.getRequests();
-
   if (requests.length === 0) { 
     throw notFoundError();
   }
+  console.log(requests)
   return requests;
 }
 

@@ -26,8 +26,9 @@ export async function postRequests(req: Request, res: Response) {
 export async function getRequests(req: Request, res: Response) {
 
     try {
+      
       const requests = await requestsService.getRequests();
-        console.log(requests)
+        console.log("requests", requests)
       return res.status(httpStatus.OK).send(requests);
     } catch (error) {
       return res.sendStatus(httpStatus.NO_CONTENT);

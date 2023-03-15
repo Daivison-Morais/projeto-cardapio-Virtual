@@ -6,7 +6,6 @@ export async function getProducts(req: Request, res: Response) {
 
   const  categoryId  = Number(req.params.categoryId);
 
-console.log(categoryId)
     try {
       const lstProducts = await productsService.getProducts(categoryId);
   
