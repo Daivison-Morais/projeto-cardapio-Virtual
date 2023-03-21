@@ -16,15 +16,15 @@ export const Container = styled.div`
   align-items: center;
   justify-content: start;
   text-align: center;
-  line-height: 12px;
+  line-height: 20px;
   color: white;
-  font-size: 10px;
+  font-size: 16px;
   border-radius: 8px;
   background-color: #575770;
   padding: 7px;
 
   > svg {
-    font-size: 25px;
+    font-size: 3rem;
     margin: 7px;
   }
 
@@ -32,4 +32,5 @@ export const Container = styled.div`
     cursor: pointer;
     background-color: black;
   }
+
 `;

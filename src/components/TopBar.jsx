@@ -14,7 +14,7 @@ export default function TopBar() {
 
   return (
     <>
-      <Top>
+      <TopBarStyle>
         <Img src={topo}></Img>
         <Option onClick={showSidebar}>
           {sidebar ? (
@@ -24,7 +24,7 @@ export default function TopBar() {
           )}
         </Option>
         <Title>Cardápio Virtual</Title>
-      </Top>
+      </TopBarStyle>
       {sidebar && <Sidebar active={sidebar}></Sidebar>}
     </>
   );
@@ -33,10 +33,10 @@ export default function TopBar() {
 const Title = styled.div`
   font-family: "Bad Script", cursive;
   position: fixed;
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 500;
   left: calc(50% - 68px);
-  top: 12px;
+  top: 16px;
   color: white;
 `;
 
@@ -45,20 +45,20 @@ const Option = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 33px;
-  top: 11px;
+  width: 40px;
+  height: 40px;
+  top: 9px;
   left: 8px;
-  font-size: 25px;
+  font-size: 28px;
   border: 1px white solid;
   border-radius: 4px;
   cursor: pointer;
 `;
 
-const Top = styled.div`
+const TopBarStyle = styled.div`
   z-index: 2;
-
   width: 100%;
-  height: 50px;
+  height: 58px;
   position: fixed;
   top: 0;
   left: 0;
@@ -68,5 +68,5 @@ const Top = styled.div`
 
 const Img = styled.img`
   width: 100%;
-  height: 50px;
+  height: 100%;
 `;

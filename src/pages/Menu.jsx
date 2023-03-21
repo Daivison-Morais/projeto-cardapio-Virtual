@@ -55,5 +55,5 @@ export const Main = styled.div`
   background-color: #ddd6ed;
   width: 100%;
   min-height: 100vh;
-  padding: 55px 10px;
+  padding: 70px 10px;
 `;

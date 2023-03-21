@@ -8,7 +8,7 @@ export default function Administrator() {
   return (
     <>
       <Main>
-        <Options onClick={()=>{navigate("/requests")}}>Predidos</Options>
+        <Options onClick={()=>{navigate("/requests")}}>Pedidos</Options>
         <Options onClick={()=>{navigate("/historic")}}>Histórico de Pedidos</Options>
         <Options onClick={()=>{navigate("/historic")}}>Gerar QrCode</Options>
       </Main>
@@ -29,10 +29,11 @@ export const Main = styled.div`
 export const Options = styled.div`
   display: flex;
   align-items: center;
+  font-size: 20px;
   justify-content: center;
   margin: 20px 0;
   width: 100%;
-  height: 40px;
+  height: 44px;
   border-radius: 8px;
   cursor: pointer;
   background-color: #474b6c;

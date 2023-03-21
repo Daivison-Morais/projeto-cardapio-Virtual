@@ -65,28 +65,27 @@ const SelectedSvg = styled.div`
   opacity: ${({ onList }) => (onList ? "1" : "0")};
   > svg {
     position: absolute;
-    font-size: 17px;
+    font-size: 19px;
   }
 `;
 
-
-
-
 const Price = styled.div`
   font-weight: 700;
-  margin-top: 2px;
+  font-size: 14px;
+
 `;
 const Descripition = styled.div`
   display: flex;
-  font-size: 9px;
-
+  font-size: 12.3px;
   text-align: center;
   max-height: 50px;
+  margin: 1.5px 0;
 `;
 
 const NameProduct = styled.div`
+font-size: 15px;
   text-align: center;
-  font-weight: 700;
+  font-weight: 600;
 `;
 const ImgProduc = styled.img`
   width: 70%;
@@ -100,14 +99,14 @@ const CardProduto = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  width: 40vw;
-  height: 55vw;
-  max-width: 152px;
-  max-height: 209px;
+  width: 47vw;
+  height: 68vw;
+  max-width: 165px; //250 px
+  max-height: 235px;
   min-height: 164px;
   min-width: 120px;
-  margin: 5px;
-  padding: 4px;
+  margin: 4px;
+  padding: 2.5px;
   border: 0.5px #dadce0 solid;
   border-radius: 10px;
   box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.25);

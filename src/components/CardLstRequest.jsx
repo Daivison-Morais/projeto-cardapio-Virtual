@@ -72,9 +72,10 @@ export default function CardLstRequests({ value }) {
 const ListRequests = styled.div`
   display: flex;
   flex-direction: column;
+  font-size: 17px;
   width: 95%;
   div {
-    margin: 3px 0;
+    margin: 4px 0;
   }
 `;
 
@@ -84,7 +85,7 @@ const BtnPreparing = styled.div`
   justify-content: center;
   width: 25vw;
   height: 10vw;
-  min-width: 98px;
+  min-width: 102px;
   margin: 10px 15px;
   border-radius: 8px;
   max-height: 50px;
@@ -125,10 +126,12 @@ export const CardRequests = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 20px 0;
+  margin: 18px 0;
   width: 90vw;
-  padding: 7px;
+  padding: 5px;
   border-radius: 8px;
   color: white;
-  background-color: #474b6c;
+  background-color: #5e638d;
+  box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.6);
+
 `;

@@ -52,6 +52,8 @@ const request = location.state.request;
 }
 
 const Container = styled.div`
+text-align: center;
+font-size: 24px;
   color: black;
 `;
 export const Center = styled.div`

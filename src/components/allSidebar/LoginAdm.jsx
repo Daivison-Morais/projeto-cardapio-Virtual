@@ -7,58 +7,53 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../UserContext";
 
 export default function LoginAdm() {
-
   const navigate = useNavigate();
   const { setToken } = useContext(UserContext);
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-    function handleForm(event) {
-      event.preventDefault();
+  function handleForm(event) {
+    event.preventDefault();
 
-      const body = {
-        name: name,
-        password: password,
-      };
-  
-      postLoginAdmin(body).then((response) => {
+    const body = {
+      name: name,
+      password: password,
+    };
+
+    postLoginAdmin(body)
+      .then((response) => {
         setToken(response.token);
         navigate("/administrator");
       })
       .catch((error) => {
-        console.log(error)
+        console.log(error);
         alert(error.response.data.error);
       });
-    }
+  }
 
   return (
     <>
-      
-       <Form onSubmit={handleForm}>
-          
-            <Input
-              placeholder="name"
-              type="text"
-              value={name}
-              onChange={(event) => setName(event.target.value)}
-              required
-            ></Input>
-                   
-            <Input
-              placeholder="Senha"
-              type="password"
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              required
-            ></Input>
-          <Button type="submit">Entrar</Button>
-        
-        
-        </Form>    
-     
-      <HorizontalBar>
-      </HorizontalBar>
+      <Form onSubmit={handleForm}>
+        <Input
+          placeholder="name"
+          type="text"
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+          required
+        ></Input>
+
+        <Input
+          placeholder="Senha"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          required
+        ></Input>
+        <Button type="submit">Entrar</Button>
+      </Form>
+
+      <HorizontalBar></HorizontalBar>
     </>
   );
 }
@@ -80,14 +75,13 @@ const Input = styled.input`
   width: 100%;
   height: 35px;
   margin-bottom: 13px;
-  font-size: 12px;
+  font-size: 17px;
   color: #262626;
   padding-left: 8px;
   border-radius: 5px;
 `;
 
 const Form = styled.form`
-
   font-family: "Merriweather", serif;
   display: flex;
   flex-direction: column;
@@ -99,6 +93,5 @@ const Form = styled.form`
   font-size: 10px;
   border-radius: 8px;
   background-color: #575770;
-  padding: 7px;
-
+  padding: 7px 7px;
 `;

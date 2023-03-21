@@ -19,10 +19,10 @@ export function Sidebar({ active }) {
 
 const Container = styled.div`
   position: fixed;
-  top: 50px;
+  top: 58px;
   left: ${({ sidebar }) => (sidebar ? "0px" : "-100%")};
   z-index: 1;
-  width: 43vw;
+  width: 52vw;
   height: 100vh;
   background-color:#1f1732;
   padding: 7px;

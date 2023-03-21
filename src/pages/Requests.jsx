@@ -61,6 +61,8 @@ export const Center = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  font-size: 18px;
   width: 100vw;
   min-height: 100vh;
   background-color: #ddd6ed;
@@ -70,6 +72,6 @@ export const Center = styled.div`
 const Main = styled.div`
   width: 100%;
   min-height: 100vh;
-  padding: 55px 20px;
+  padding: 58px 20px;
   background-color: #ddd6ed;
 `;

@@ -82,14 +82,15 @@ export const Button = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-size: 18px;
   position: fixed;
-  bottom: 5px;
-  left: 50%;
-  min-width: 113px;
-  width: 40vw;
+  bottom: 7px;
+  right: 20px;
+  min-width: 120px;
   height: 40px;
   color: white;
   border-radius: 5px;
+  padding: 3px 8px;
   border: 1px white solid;
   cursor: pointer;
 `;
@@ -102,7 +103,7 @@ const Main = styled.div`
   width: 100%;
   flex-wrap: wrap;
   min-height: 100vh;
-  padding: 55px 0 120px 0;
+  padding: 68px 0 120px 0;
   word-wrap: break-word;
   background-color: #ddd6ed;
 `;

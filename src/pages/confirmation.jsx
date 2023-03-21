@@ -14,7 +14,7 @@ export default function Confirmation() {
   const { productsSelects } = location.state;
   const [description, setDescription] = useState("");
 
-  const tableNumber = localStorage.tableNumber || 0;
+  const tableNumber = localStorage.tableNumber || 2;
   let totalPrice = 0;
   let listRequests = "";
 
@@ -52,7 +52,7 @@ export default function Confirmation() {
   return (
     <>
       <Main>
-        <Title>{"lista de pedidos - mesa "}</Title>
+        <Title>{`lista de pedidos - mesa ${tableNumber}`}</Title>
         {productsSelects.map((value) => (
           <EachProduct>{value.name}</EachProduct>
         ))}
@@ -76,9 +76,9 @@ export default function Confirmation() {
 }
 const Input = styled.input`
   width: 100%;
-  height: 35px;
+  height: 40px;
   margin-bottom: 13px;
-  font-size: 18px;
+  font-size: 20px;
   color: #262626;
   padding-left: 8px;
   border-radius: 5px;
@@ -91,17 +91,17 @@ const Form = styled.form`
 `;
 
 const Price = styled.div`
-  font-size: 20px;
+  font-size: 23px;
   margin: 25px;
 `;
 
 const Title = styled.div`
-  font-size: 20px;
+  font-size: 23px;
   margin-bottom: 25px;
 `;
 
 const EachProduct = styled.div`
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
   margin: 8px 5px;
 `;
