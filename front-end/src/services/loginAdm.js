@@ -1,5 +1,5 @@
 import axios from "axios";
-import { baseURL } from "./api";
+const baseURL = process.env.REACT_APP_API_BASE_URL;
 
 export async function postLoginAdmin(body) {
   

@@ -5,6 +5,6 @@ import { getCategories } from "@/controllers";
 const categoriesRouter = Router();
 
 categoriesRouter
-  .get("", getCategories)
+  .get("/", getCategories)
 
 export { categoriesRouter };

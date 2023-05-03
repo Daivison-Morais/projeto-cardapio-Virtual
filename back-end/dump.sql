@@ -96,7 +96,7 @@ CREATE TABLE public.product (
     id integer NOT NULL,
     name character varying(255) NOT NULL,
     "imgUrl" text NOT NULL,
-    descricao character varying(500),
+    description character varying(500),
     price integer NOT NULL,
     "categoriesId" integer NOT NULL
 );

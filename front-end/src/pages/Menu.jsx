@@ -11,10 +11,10 @@ export default function Menu() {
   const { setRestaurantId } = useContext(UserContext);
 
   useEffect(() => {
-    getCategories() //de qual restaurante?
+    getCategories() 
       .then((response) => {
         setCategories(response);
-        setRestaurantId(response[1].restaurantId)        
+        setRestaurantId(response[0].restaurantId)        
       })
       .catch((error) => {
         console.log(error);
