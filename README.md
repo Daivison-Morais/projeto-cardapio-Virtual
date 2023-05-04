@@ -11,3 +11,5 @@ Clone o repositório.
 Na raíz do projeto rode: docker compose up -d
 
 Abra o front-end copiando na barra de endereços do navegador: localhost:8081
+
+duplique a janela, uma sera do cliente e outra do restaurante, entre como administrador com nome e senha: Pizza Planet, 123456.
