@@ -1,9 +1,9 @@
 import "reflect-metadata";
-import "express-async-errors";
 import express, { Express } from "express";
 import cors from "cors";
 
-import { connectDb, disconnectDB } from "./config/database";
+import { loadEnv, connectDb, disconnectDB } from "@/config";
+loadEnv();
 
 import {
   categoriesRouter,

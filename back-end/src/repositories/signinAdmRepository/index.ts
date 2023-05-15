@@ -1,15 +1,18 @@
 import { prisma } from "@/config";
 
-async function findRestaurant(name: string) {
-  return prisma.restaurants.findFirst({
+async function findRestaurant (name: string) {
+
+  const teste = await prisma.restaurants.findFirst({
     where: {
       name,
-    },
+    }
   });
+
+  return teste;
 }
 
 async function createSession(restaurantId: number, token: string) {
-  return prisma.sessions.create({
+  return await prisma.sessions.create({
     data: {
       restaurantId,
       token,
@@ -18,7 +21,7 @@ async function createSession(restaurantId: number, token: string) {
 }
 
 async function existSession(restaurantId: number) {
-    return prisma.sessions.findFirst({
+    return await prisma.sessions.findFirst({
       where: {
         restaurantId,
       },

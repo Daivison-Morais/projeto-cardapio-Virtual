@@ -1,45 +1,44 @@
 import { notFoundError } from "@/errors";
+import { RequestUser } from "@/protocols";
 import requestsRepository from "@/repositories/requests-repository";
 
-async function postRequests (lstRequests:any) {
-   const request = await requestsRepository.postRequests(lstRequests);
-   return request;
+async function postRequests(lstRequests: RequestUser) {
+  const request = await requestsRepository.postRequests(lstRequests);
+  return request;
 }
 
-async function getRequests () {
-  
+async function getRequests() {
   const requests = await requestsRepository.getRequests();
-  if (requests.length === 0) { 
+  if (!requests) {
     throw notFoundError();
   }
-  console.log(requests)
   return requests;
 }
 
-async function getByIdRequest (idRequest: number) {
+async function getByIdRequest(idRequest: number) {
   const requests = await requestsRepository.getByIdRequest(idRequest);
 
   return requests;
 }
 
-async function putRequests (idRequest: number, status: string) {
+async function putRequests(idRequest: number, status: string) {
   const requests = await requestsRepository.putRequests(idRequest, status);
 
   return requests;
 }
 
-async function deleteRequest (idRequest:number) {
+async function deleteRequest(idRequest: number) {
   const requests = await requestsRepository.deleteRequest(idRequest);
 
   return requests;
 }
 
-const requestsService = { 
+const requestsService = {
   postRequests,
   getRequests,
   putRequests,
   deleteRequest,
-  getByIdRequest
-}
+  getByIdRequest,
+};
 
 export default requestsService;

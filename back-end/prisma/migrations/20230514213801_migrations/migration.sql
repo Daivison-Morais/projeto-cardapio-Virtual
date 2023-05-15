@@ -15,7 +15,7 @@ CREATE TABLE "historic" (
     "description" VARCHAR(700),
     "status" VARCHAR(255) NOT NULL,
     "tableNumber" INTEGER NOT NULL,
-    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-03-03 16:59:27.700778-03'::timestamp with time zone,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-05-14 16:52:32.839876-03'::timestamp with time zone,
     "totalPrice" INTEGER NOT NULL,
     "restaurantId" INTEGER NOT NULL,
 
@@ -41,7 +41,7 @@ CREATE TABLE "requests" (
     "description" VARCHAR(700),
     "status" VARCHAR(255) NOT NULL,
     "tableNumber" INTEGER NOT NULL,
-    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-03-03 16:59:27.700778-03'::timestamp with time zone,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-05-14 16:52:32.839876-03'::timestamp with time zone,
     "totalPrice" INTEGER NOT NULL,
     "restaurantId" INTEGER NOT NULL,
 
@@ -63,19 +63,19 @@ CREATE TABLE "sessions" (
     "restaurantId" INTEGER NOT NULL,
     "token" VARCHAR(500) NOT NULL,
     "active" BOOLEAN NOT NULL DEFAULT true,
-    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-03-04 11:36:00.177382-03'::timestamp with time zone,
+    "createdAt" TIMESTAMPTZ(6) NOT NULL DEFAULT '2023-05-14 16:52:32.839876-03'::timestamp with time zone,
 
     CONSTRAINT "sessions_pk" PRIMARY KEY ("id")
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "categories_name_key" ON "categories"("name");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "categories_imageUrl_key" ON "categories"("imageUrl");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "product_name_key" ON "product"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "restaurants_name_key" ON "restaurants"("name");
 
 -- AddForeignKey
 ALTER TABLE "categories" ADD CONSTRAINT "categories_fk0" FOREIGN KEY ("restaurantId") REFERENCES "restaurants"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
@@ -84,7 +84,7 @@ ALTER TABLE "categories" ADD CONSTRAINT "categories_fk0" FOREIGN KEY ("restauran
 ALTER TABLE "historic" ADD CONSTRAINT "historic_fk0" FOREIGN KEY ("restaurantId") REFERENCES "restaurants"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
-ALTER TABLE "product" ADD CONSTRAINT "product_fk1" FOREIGN KEY ("categoriesId") REFERENCES "categories"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
+ALTER TABLE "product" ADD CONSTRAINT "product_fk0" FOREIGN KEY ("categoriesId") REFERENCES "categories"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- AddForeignKey
 ALTER TABLE "requests" ADD CONSTRAINT "requests_fk0" FOREIGN KEY ("restaurantId") REFERENCES "restaurants"("id") ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -5,6 +5,9 @@ import httpStatus from "http-status";
 export async function getProducts(req: Request, res: Response) {
 
   const  categoryId  = Number(req.params.categoryId);
+  if(!categoryId){
+    return res.sendStatus(httpStatus.BAD_REQUEST);
+  }
 
     try {
       const lstProducts = await productsService.getProducts(categoryId);

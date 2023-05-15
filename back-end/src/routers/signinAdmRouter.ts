@@ -1,11 +1,11 @@
 import { Router } from "express";
-//import { authenticateToken } from "@/middlewares";
 import { postSigninAdm } from "@/controllers/signinAdm-Controller";
-import { validateBody } from "@/middlewares/signinAdmMiddlewareSchemas";
+import { validateBody } from "@/middlewares";
+import { postSigninSchema } from "@/schemas/postSigninAdmSchema";
 
 const postSigninRouter = Router();
 
 postSigninRouter
-  .post("/", validateBody, postSigninAdm)
+  .post("/", validateBody(postSigninSchema), postSigninAdm);
 
 export { postSigninRouter };

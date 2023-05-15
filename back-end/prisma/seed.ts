@@ -3,16 +3,16 @@ const prisma = new PrismaClient();
 
 async function main() {
   const restaurant = await prisma.restaurants.findFirst();
+  let rest: any;
   if (!restaurant) {
-    const rest = await prisma.restaurants.create({
+     rest = await prisma.restaurants.create({
       data: {
         name: "Pizza Planet",
         password: "123456",
       },
     });
-    console.log({ rest });
   }
-
+  console.log(rest);
   let categories = await prisma.categories.findFirst();
   if (!categories) {
     const categorias = await prisma.categories.createMany({
@@ -21,34 +21,34 @@ async function main() {
           name: "Pizzas",
           imageUrl:
             "https://media.discordapp.net/attachments/1045156401351249980/1068620102955696209/IMG-20230127-WA0011.jpg",
-          restaurantId: 1,
+          restaurantId: rest.id,
         },
         {
           name: "Lanches",
           imageUrl:
             "https://media.discordapp.net/attachments/1068625823613067355/1069053979243315242/princBurguer.jpg",
-          restaurantId: 1,
+          restaurantId: rest.id,
         },
         {
           name: "Bebidas",
           imageUrl:
             "https://media.discordapp.net/attachments/1068625823613067355/1069053979759226890/princBebidas.jpg",
-          restaurantId: 1,
+          restaurantId: rest.id,
         },
         {
           name: "Doces",
           imageUrl:
             "https://media.discordapp.net/attachments/1068625823613067355/1069227305949462528/PrincDoces.jpg",
-          restaurantId: 1,
+          restaurantId: rest.id,
         },
       ],
     });
-    console.log({ categorias });
+    console.log({categorias});
   }
 
   let products = await prisma.product.findFirst();
   if (!products) {
-    const categorias = await prisma.product.createMany({
+    const products = await prisma.product.createMany({
       data: [
         {
           name: "Coxinha de frango com catupiry 300g",
@@ -436,7 +436,7 @@ async function main() {
         },
       ],
     });
-    console.log({ categorias });
+    console.log({ products });
   }
 }
 

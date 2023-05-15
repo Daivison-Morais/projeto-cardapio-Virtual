@@ -1,13 +1,15 @@
 import { Router } from "express";
-//import { authenticateToken } from "@/middlewares";
 import { deleteRequest, getByIdRequest, getRequests, postRequests, putRequests } from "@/controllers";
+import { authenticateToken, validateBody } from "@/middlewares";
+import { requestSchema } from "../schemas/postRequestSchema";
 
 const requestsRouter = Router();
 
 requestsRouter
-  .post("", postRequests)
-  .get("", getRequests)
+  .post("", validateBody(requestSchema), postRequests)
   .get("/:idRequest", getByIdRequest)
+  .all("/*", authenticateToken)
+  .get("", getRequests)
   .put("", putRequests)
   .delete("/delete/:idRequest", deleteRequest)
 
