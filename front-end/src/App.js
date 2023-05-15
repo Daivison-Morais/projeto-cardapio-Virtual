@@ -9,6 +9,7 @@ import TopBar from "./components/TopBar";
 import Waiting from "./pages/waiting";
 import { useState } from "react";
 import UserContext from "./components/UserContext";
+import NotfoundPage from "./pages/NotFoundPage";
 
 export default function App() {
 
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/requests" element={<Requests/>}/>
           <Route path="/historic" element={<Historic/>}/>
           <Route path="/wainting" element={<Waiting/>}/>
+          <Route path="*" element={<NotfoundPage/>}/>
         </Routes>
         </UserContext.Provider>
       </Router>

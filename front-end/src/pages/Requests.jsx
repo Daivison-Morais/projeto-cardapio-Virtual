@@ -1,15 +1,18 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getRequests } from "../services/requestsApi";
 import HorizontalBar from "../components/HorizontalBar";
 import CardLstRequests from "../components/CardLstRequest";
 import styled from "styled-components";
+import UserContext from "../components/UserContext";
+
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
   const [refresh, setRefresh] = useState([]);
+  const { token } = useContext(UserContext);
 
   useEffect(() => {
-    getRequests()
+    getRequests(token)
       .then((response) => {
         setRequests(response);
       })

@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { deleteRequests, putRequests } from "../services/requestsApi";
+import UserContext from "./UserContext";
 
 export default function CardLstRequests({ value }) {
   const [clickedBt1, setClickedBt1] = useState(false);
   const [clickedBt2, setClickedBt2] = useState(false);
+  const { token } = useContext(UserContext);
 
-  function updateRequest(body) {
+  function updateRequest(body, totokenken) {
     if (body.status === "preparing") {
       setClickedBt1(true);
     }
@@ -15,7 +17,7 @@ export default function CardLstRequests({ value }) {
       setClickedBt2(true);
     }
 
-    putRequests(body)
+    putRequests(body, token)
       .then((response) => {
         setClickedBt1(true);
         if (response.status === "finished") {

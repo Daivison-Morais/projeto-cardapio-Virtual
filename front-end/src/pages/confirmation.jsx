@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "./Products";
 import HorizontalBar from "../components/HorizontalBar";
-import { postRequest } from "../services/confirmationApi";
+import { postRequest } from "../services/requestsApi";
 import { useContext, useState } from "react";
 import UserContext from "../components/UserContext";
 
@@ -31,6 +31,8 @@ export default function Confirmation() {
     status: "waiting",
     totalPrice: totalPrice * 100,
   };
+
+  console.log(body);
 
   function DoRequest() {
     console.log(body)
