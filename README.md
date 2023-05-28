@@ -8,8 +8,12 @@
 
 Clone o repositório.
 
-Na raíz do projeto rode: docker compose up -d
+no arquivo back-end e no front-end, crie um arquivo .env como descrito no arquivo .env.example
 
-Abra o front-end copiando na barra de endereços do navegador: localhost:8081
+Na raíz do projeto 
+
+rode: docker compose up -d
+
+Após finalizado o comando acima, na barra de endereços do navegador cole: localhost:8081
 
 duplique a janela, uma sera do cliente e outra do restaurante, entre como administrador com nome e senha: Pizza Planet, 123456.
