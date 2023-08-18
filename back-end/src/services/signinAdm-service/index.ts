@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 
 async function signinAdm (name: string, password: string){
   
-    const restaurantExist = await signinRepository.findRestaurant(name);
+  const restaurantExist = await signinRepository.findRestaurant(name);
     
   if(!restaurantExist){
     throw conflictError("nome ou senha errados");
